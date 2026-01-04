@@ -1,6 +1,11 @@
 from decimal import Decimal
 from rest_framework import serializers
-from .models import MenuItem
+from .models import MenuItem, Category 
+
+class CategorySerializer (serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id','slug','title']
 
 class MenuItemSerializer(serializers.ModelSerializer):
     stock = serializers.IntegerField(source='inventory')
