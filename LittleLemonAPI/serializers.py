@@ -5,10 +5,10 @@ from .models import MenuItem
 class MenuItemSerializer(serializers.ModelSerializer):
     stock = serializers.IntegerField(source='inventory')
     category = serializers.StringRelatedField()
-    tax = serializers.SerializerMethodField(method_name='calculate_tax')
+    price_after_tax = serializers.SerializerMethodField(method_name='calculate_tax')
     class Meta:
         model = MenuItem
-        fields = ['id', 'title', 'price', 'stock', 'category', 'tax']
+        fields = ['id', 'title', 'price', 'stock', 'category', 'price_after_tax']
     
     def validate_price(self, value):
         if value < 0:
